@@ -4,10 +4,10 @@
  * handle_print - Processes and prints an argument based on its type.
  * @fmt: Formatted string containing the arguments and format specifiers.
  * @list: A list of arguments to be printed.
- * @ind: Index for tracking the current position in the format string.
- * @buffer: Buffer array to hold the printed characters.
- * @flags: Flags that control the printing format.
- * @width: Width specification for formatting.
+ * @ind: Index for tracking the current position in the format string
+ * @buffer: Buffer array to hold the printed characters
+ * @flags: Flags that control the printing format
+ * @width: Width specification for formatting
  * @precision: Precision specification for formatting.
  * @size: Size specifier for formatting.
  *
