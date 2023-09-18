@@ -1,1 +1,1 @@
-This is a collaboration project with my very beautiful girlfriend. She is very special to me.
+This is a collaboration project between Suzzy and Lewis.
