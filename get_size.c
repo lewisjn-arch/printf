@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * get_size - Determine the data type size for the argument.
+ * get_size - Determine the data type size for the argument
  * @format: Formatted string to print arguments.
  * @i: Pointer to track the current format position.
  *
- * Return: Size for data type casting, 0 if none specified.
+ * Return: Size for data type casting, 0 if none specified
  */
 int get_size(const char *format, int *i)
 {
