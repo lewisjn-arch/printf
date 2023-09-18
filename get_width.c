@@ -3,9 +3,8 @@
 /**
  * get_width - Calculate the width for formatting during printing.
  * @format: The formatted string in which to print the arguments.
- * @i: Pointer to the index tracking the current position in the format string.
- * @list: List of arguments.
- *
+ * @i: Pointer to the index tracking the current position in the format string
+ * @list: List of arguments 
  * Return: The calculated width for formatting.
  */
 int get_width(const char *format, int *i, va_list list)
