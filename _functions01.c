@@ -138,7 +138,7 @@ int hexa_print(va_list args, char map_to[], char buffer[], int flags,
 
 	while (num > 0)
 	{
-		buffer[i--] = map_to[num % 16];
+		buffer[i--] = map[num % 16];
 		num /= 16;
 	}
 
