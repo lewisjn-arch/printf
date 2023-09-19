@@ -1,65 +1,118 @@
+#include <stdio.h>
+#include <stdarg.h>
+#include <unistd.h>
+#include <stdbool.h>
 #include "main.h"
 
-void print_buffer(char buffer[], int *buff_ind);
-
 /**
- * custom_printf - Custom printf function
- * @format: Format string
- * Return: Number of characters printed
+ * print_binary - Prints an unsigned integer in binary format.
+ * @num: The unsigned integer to be printed in binary.
  */
-int custom_printf(const char *format, ...)
-{
-    int i, printed = 0, printed_chars = 0;
-    int flags, width, precision, size, buff_ind = 0;
-    va_list args;
-    char buffer[BUFFER_SIZE];
-
-    if (format == NULL)
-        return (-1);
-
-    va_start(args, format);
-
-    for (i = 0; format && format[i] != '\0'; i++)
-    {
-        if (format[i] != '%')
-        {
-            buffer[buff_ind++] = format[i];
-            if (buff_ind == BUFFER_SIZE)
-                print_buffer(buffer, &buff_ind);
-            printed_chars++;
-        }
-        else
-        {
-            print_buffer(buffer, &buff_ind);
-            flags = get_flags(format, &i);
-            width = get_width(format, &i, args);
-            precision = get_precision(format, &i, args);
-            size = get_size(format, &i);
-            ++i;
-            printed = handle_print(format, &i, args, buffer,
-                                   flags, width, precision, size);
-            if (printed == -1)
-                return (-1);
-            printed_chars += printed;
-        }
+void print_binary(unsigned int num) {
+    if (num / 2 != 0) {
+        print_binary(num / 2);
     }
-
-    print_buffer(buffer, &buff_ind);
-
-    va_end(args);
-
-    return (printed_chars);
+    putchar('0' + (num % 2));
 }
 
 /**
- * print_buffer - Prints the contents of the buffer if it exists
- * @buffer: Array of characters
- * @buff_ind: Index at which to add the next character, represents the length
+ * _printf - Custom printf function that handles various conversion specifiers.
+ * @fmt: A format string containing zero or more conversion specifiers.
+ *
+ * Return: (int) The number of characters printed (excluding the null byte used
+ * to end output to strings).
  */
-void print_buffer(char buffer[], int *buff_ind)
-{
-    if (*buff_ind > 0)
-        write(1, &buffer[0], *buff_ind);
+int _printf(const char *fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
 
-    *buff_ind = 0;
+    int count = 0;
+
+    char buffer[1024];
+    int buf_idx = 0;
+
+    while (*fmt) {
+        if (*fmt == '%') {
+            fmt++;
+            switch (*fmt) {
+                case 'c':
+                    buffer[buf_idx++] = va_arg(args, int);
+                    count++;
+                    break;
+                case 's':
+                    while (buf_idx < 1023 && (buffer[buf_idx++] = *va_arg(args, char *)))
+                        count++;
+                    break;
+                case 'd':
+                case 'i':
+                    buf_idx += snprintf(buffer + buf_idx, 1023 - buf_idx, "%d", va_arg(args, int));
+                    count++;
+                    break;
+                case 'u':
+                    buf_idx += snprintf(buffer + buf_idx, 1023 - buf_idx, "%u", va_arg(args, unsigned int));
+                    count++;
+                    break;
+                case 'o':
+                    buf_idx += snprintf(buffer + buf_idx, 1023 - buf_idx, "%o", va_arg(args, unsigned int));
+                    count++;
+                    break;
+                case 'x':
+                    buf_idx += snprintf(buffer + buf_idx, 1023 - buf_idx, "%x", va_arg(args, unsigned int));
+                    count++;
+                    break;
+                case 'X':
+                    buf_idx += snprintf(buffer + buf_idx, 1023 - buf_idx, "%X", va_arg(args, unsigned int));
+                    count++;
+                    break;
+                case 'S': {
+                    char *s = va_arg(args, char *);
+                    while (*s) {
+                        if ((*s >= 1 && *s <= 31) || *s >= 127) {
+                            buf_idx += snprintf(buffer + buf_idx, 1023 - buf_idx, "\\x%02X", (unsigned char)*s);
+                            count += 4;
+                        } else {
+                            buffer[buf_idx++] = *s;
+                            count++;
+                        }
+                        s++;
+                    }
+                    break;
+                }
+                case 'p': {
+                    void *ptr = va_arg(args, void *);
+                    buf_idx += snprintf(buffer + buf_idx, 1023 - buf_idx, "0x%lx", (unsigned long)ptr);
+                    count += 2;
+                    break;
+                }
+                case '%':
+                    buffer[buf_idx++] = '%';
+                    count++;
+                    break;
+                default:
+                    buffer[buf_idx++] = '%';
+                    count++;
+                    break;
+            }
+        } else {
+            buffer[buf_idx++] = *fmt;
+            count++;
+        }
+
+        if (buf_idx >= 1023) {
+            buffer[buf_idx] = '\0';
+            write(1, buffer, buf_idx);
+            buf_idx = 0;
+        }
+
+        fmt++;
+    }
+
+    if (buf_idx > 0) {
+        buffer[buf_idx] = '\0';
+        write(1, buffer, buf_idx);
+    }
+
+    va_end(args);
+
+    return (count);
 }
