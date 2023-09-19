@@ -1,88 +1,68 @@
 #include "main.h"
 
 /**
- * printable - Checks if a character is printable.
- * @c: Character to be evaluated
+ * digit - Check if a character is a digit.
+ * @c: The character to check.
  *
- * Return: 1 if the character is printable, 0 otherwise
- */
-int printable(char c)
-{
-	if (c >= 32 && c < 127)
-		return (1);
-
-	return (0);
-}
-
-/**
- * append_hexacode - Appends the ASCII code in hexadecimal format to buffer
- * @buffer: Array of characters
- * @i: Index at which to start appending
- * @ascii_code: ASCII code to append
- * Return: Always 3
- */
-int append_hexacode(char ascii_code, char buffer[], int i)
-{
-	char map[] = "0123456789ABCDEF";
-
-	if (ascii_code < 0)
-		ascii_code *= -1;
-
-	buffer[i++] = '\\';
-	buffer[i++] = 'x';
-
-	buffer[i++] = map[ascii_code / 16];
-	buffer[i] = map[ascii_code % 16];
-
-	return (3);
-}
-
-/**
- * digit - Checks if a character is a digit
- * @c: Character to be evaluated
- *
- * Return: 1 if the character is a digit, 0 otherwise
+ * Return: 1 if it's a digit, 0 otherwise.
  */
 int digit(char c)
 {
-	if (c >= '0' && c <= '9')
-		return (1);
-
-	return (0);
+    return (c >= '0' && c <= '9');
 }
 
 /**
- * convert_number_size - Casts a number to the specified size
- * @num: Number to be casted
- * @size: Number indicating the type to be casted to
+ * printable - Check if a character is printable.
+ * @c: The character to check.
  *
- * Return: Casted value of num
+ * Return: 1 if it's printable, 0 otherwise.
  */
-long int convert_number_size(long int num, int size)
+int printable(char c)
 {
-	if (size == S_LONG)
-		return (num);
-
-	else if (size == S_SHORT)
-		return ((short)num);
-
-	return ((int)num);
+    return (c >= 32 && c <= 126);
 }
 
 /**
- * convert_unsigned_size - Casts an unsigned number to the specified size
- * @num: Number to be casted
- * @size: Number indicating the type to be casted to
+ * itoa - Convert an integer to a string.
+ * @n: The integer to convert.
+ * @buffer: The buffer to store the result.
  *
- * Return: Casted value of num
+ * Return: The length of the converted string.
  */
-long int convert_unsigned_size(unsigned long int num, int size)
+int itoa(int n, char buffer[])
 {
-	if (size == S_LONG)
-		return (num);
+    int i, sign;
 
-	else if (size == S_SHORT)
-		return ((unsigned short)num);
-
-	return ((unsigned int)num);
+    if ((sign = n) < 0)
+        n = -n;
+    i = 0;
+    do
+    {
+        buffer[i++] = n % 10 + '0';
+    } while ((n /= 10) > 0);
+    if (sign < 0)
+        buffer[i++] = '-';
+    buffer[i] = '\0';
+    return (i);
 }
+
+/**
+ * hex_itoa - Convert an unsigned integer to a hexadecimal string.
+ * @n: The unsigned integer to convert.
+ * @buffer: The buffer to store the result.
+ *
+ * Return: The length of the converted string.
+ */
+int hex_itoa(unsigned int n, char buffer[])
+{
+    int i;
+
+    i = 0;
+    do
+    {
+        buffer[i++] = "0123456789abcdef"[n % 16];
+    } while ((n /= 16) > 0);
+    buffer[i] = '\0';
+    return (i);
+}
+

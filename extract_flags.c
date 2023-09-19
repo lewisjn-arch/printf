@@ -1,33 +1,37 @@
 #include "main.h"
 
 /**
- * extract_flags - Calculates active flags in the format string
- * @format: Formatted string to print the arguments
- * @i: take a parameter to be evaluated
- * Return: Flags that are found
+ * extract_flags - Extract and evaluate flags
+ * @format: Formatted string to print arguments.
+ * @i: Pointer to track the current format position.
+ *
+ * Return: Flags value based on the format specifier.
  */
 int extract_flags(const char *format, int *i)
 {
-	int j, current_index;
-	int flags = 0;
+    int current_index = *i + 1;
+    int flags = 0;
 
-	const char FLAGS_CHAR[] = {'-', '+', '0', '#', ' ', '\0'};
-	const int FLAGS_ARRAY[] = {F_MINUS, F_PLUS, F_ZERO, F_HASH, F_SPACE, 0};
+    while (format[current_index] == '-' || format[current_index] == '+'
+           || format[current_index] == ' ' || format[current_index] == '#'
+           || format[current_index] == '0')
+    {
+        if (format[current_index] == '-')
+            flags |= F_MINUS;
+        else if (format[current_index] == '+')
+            flags |= F_PLUS;
+        else if (format[current_index] == ' ')
+            flags |= F_SPACE;
+        else if (format[current_index] == '#')
+            flags |= F_HASH;
+        else if (format[current_index] == '0')
+            flags |= F_ZERO;
 
-	for (current_index = *i + 1; format[current_index] != '\0'; current_index++)
-	{
-		for (j = 0; FLAGS_CHAR[j] != '\0'; j++)
-			if (format[current_index] == FLAGS_CHAR[j])
-			{
-				flags |= FLAGS_ARRAY[j];
-				break;
-			}
+        current_index++;
+    }
 
-		if (FLAGS_CHAR[j] == 0)
-			break;
-	}
+    *i = current_index - 1;
 
-	*i = current_index - 1;
-
-	return (flags);
+    return (flags);
 }
+
