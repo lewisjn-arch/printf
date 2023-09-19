@@ -1,6 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#define FORMAT_SPECIFIERS "csdiuoxXSp%"
+#include <stdio.h>
+
+int _printf(const char *format, ...);
 
 #endif /* MAIN_H */
