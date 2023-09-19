@@ -1,7 +1,15 @@
 #include <limits.h>
 #include <stdio.h>
 #include "main.h"
-
+/**
+ * main - Entry point of the program
+ *
+ * Description: This is the main function for our program. It serves as the
+ * entry point where program execution begins. In this version of the program,
+ * it is used to test our printf function.
+ *
+ * Return: Always 0 (Success)
+ */
 int main(void)
 {
 	int len;
