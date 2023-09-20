@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * printable - Evaluates if a char is printable
- * @c: Char to be evaluated.
+ * printable - This function evaluates if a character is printable
+ * @c: Character to be evaluated.
  *
- * Return: 1 if c is printable, 0 otherwise
+ * Return: 1 if successful, 0 otherwise
  */
 int printable(char c)
 {
@@ -15,16 +15,16 @@ int printable(char c)
 }
 
 /**
- * append_hexacode - Append ascci in hexadecimal code to buffer
+ * append_hexacode - This function appends ascii in hexadecimal code to buffer
  * @buffer: Array of chars.
  * @i: Index at which to start appending.
- * @ascii: ASSCI CODE.
+ * @ascii: ASCCI CODE.
  * Return: Always 3
  */
 int append_hexacode(char ascii, char buffer[], int i)
 {
 	char map_to[] = "0123456789ABCDEF";
-	
+
 	if (ascii < 0)
 		ascii *= -1;
 
@@ -38,8 +38,8 @@ int append_hexacode(char ascii, char buffer[], int i)
 }
 
 /**
- * digit - Verifies if a char is a digit
- * @c: Char to be evaluated
+ * digit - This function verifies if a character is a digit
+ * @c: Character to be evaluated
  *
  * Return: 1 if c is a digit, 0 otherwise
  */
@@ -52,11 +52,11 @@ int digit(char c)
 }
 
 /**
- * convert_number_size - Casts a number to the specified size
- * @num: Number to be casted.
- * @size: Number indicating the type to be casted.
+ * convert_number_size - This function casts a number to the specified size
+ * @num: The Number to be casted.
+ * @size: The Number indicating the type to be casted.
  *
- * Return: Casted value of num
+ * Return: The Casted value of num
  */
 long int convert_number_size(long int num, int size)
 {
@@ -69,11 +69,11 @@ long int convert_number_size(long int num, int size)
 }
 
 /**
- * convert_unsigned_size - Casts a number to the specified size
- * @num: Number to be casted
- * @size: Number indicating the type to be casted
+ * convert_unsigned_size - This function casts a number to the specified size
+ * @num: The Number to be casted
+ * @size: The Number indicating the type to be casted
  *
- * Return: Casted value of num
+ * Return: The Casted value of num
  */
 long int convert_unsigned_size(unsigned long int num, int size)
 {

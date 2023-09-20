@@ -1,17 +1,17 @@
 #include "main.h"
 /**
- * print_handler - Prints an argument based on its type
- * @format: Formatted string in which to print the arguments.
+ * print_handler - This function prints an argument based on its type
+ * @format: string in which to print the arguments.
  * @args: List of arguments to be printed.
  * @i: index.
  * @buffer: Buffer array to handle print.
  * @flags: Calculates active flags
- * @width: get width.
+ * @width: gets width to be printed.
  * @precision: Precision specification
  * @size: Size specifier
  * Return: 1 or 2;
  */
-int handle_print(const char *format, int *i, va_list args, char buffer[],
+int print_handler(const char *format, int *i, va_list args, char buffer[],
 	int flags, int width, int precision, int size)
 {
 	int i, unknown_length = 0, printed_characters = -1;

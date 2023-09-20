@@ -1,14 +1,14 @@
 #include "main.h"
 
 /**
- * char_print - Prints a char
- * @args: List a of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: Width
- * @precision: Precision specification
+ * char_print - This function prints a character
+ * @args: List a of arguments to be accessed
+ * @buffer: Buffer array to handle printing
+ * @flags: this function calculates active flags
+ * @width: Width for printing
+ * @precision: Precision specification value
  * @size: Size specifier
- * Return: Number of chars printed
+ * Return: Number of characters printed
  */
 int char_print(va_list args, char buffer[],
 	int flags, int width, int precision, int size)
@@ -19,14 +19,14 @@ int char_print(va_list args, char buffer[],
 }
 
 /**
- * string_print - Prints a string
- * @args: List a of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: get width.
- * @precision: Precision specification
+ * string_print - This function prints a string
+ * @args: List a of arguments to be accessed
+ * @buffer: Buffer array to handle printing
+ * @flags: This function calculates active flags
+ * @width: get width for printing
+ * @precision: Precision specification value
  * @size: Size specifier
- * Return: Number of chars printed
+ * Return: Number of characters printed
  */
 int string_print(va_list args, char buffer[],
 	int flags, int width, int precision, int size)
@@ -74,14 +74,14 @@ int string_print(va_list args, char buffer[],
 }
 
 /**
- * percentage_print - Prints a percent sign
- * @args: Lista of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: get width.
- * @precision: Precision specification
+ * percentage_print - This function prints a percent sign
+ * @args: List of arguments to be accessed
+ * @buffer: Buffer array to handle printing
+ * @flags: This function calculates active flags
+ * @width: get width for printing
+ * @precision: Precision specification value
  * @size: Size specifier
- * Return: Number of chars printed
+ * Return: Number of characters printed
  */
 int percentage_print(va_list args, char buffer[],
 	int flags, int width, int precision, int size)
@@ -96,14 +96,14 @@ int percentage_print(va_list args, char buffer[],
 }
 
 /**
- * integer_print - Print int
- * @args: Lists of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: get width.
- * @precision: Precision specification
+ * integer_print - This function prints integers
+ * @args: Lists of arguments to be accessed
+ * @buffer: Buffer array to handle printing
+ * @flags: This function calculates active flags
+ * @width: get width to be printed
+ * @precision: Precision specification value
  * @size: Size specifier
- * Return: Number of chars printed
+ * Return: Number of characters printed
  */
 int integer_print(va_list args, char buffer[],
 	int flags, int width, int precision, int size)
@@ -135,18 +135,18 @@ int integer_print(va_list args, char buffer[],
 
 	i++;
 
-	return (number_write(negative, i, buffer, flags, width, precision, size));
+	return (number_write(negative, index, flags, width, precision, size));
 }
 
 /**
- * binary_print - Prints an unsigned number
- * @args: Lists of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: get width.
- * @precision: Precision specification
+ * binary_print - This function prints an unsigned number
+ * @args: Lists of arguments to be accessed
+ * @buffer: Buffer array to handle printing
+ * @flags: this Calculates active flags
+ * @width: get width to be printed
+ * @precision: Precision specification value
  * @size: Size specifier
- * Return: Numbers of char printed.
+ * Return: Numbers of characters printed.
  */
 int binary_print(va_list args, char buffer[],
 	int flags, int width, int precision, int size)
@@ -162,7 +162,7 @@ int binary_print(va_list args, char buffer[],
 	UNUSED(size);
 
 	n = va_arg(args, unsigned int);
-	m = 2147483648; /* (2 ^ 31) */
+	m = 2147483648;
 	arr[0] = n / m;
 	for (i = 1; i < 32; i++)
 	{

@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * extract_width - Calculates the width for printing
- * @format: Formatted string in which to print the arguments.
+ * extract_width - This function calculates the width for printing
+ * @format: string in which to print the arguments.
  * @i: List of arguments to be printed.
  * @args: list of arguments.
  *
@@ -22,7 +22,7 @@ int extract_width(const char *format, int *i, va_list args)
 		}
 		else if (format[current_index] == '*')
 		{
-			current_i++;
+			current_index++;
 			width = va_arg(args, int);
 			break;
 		}

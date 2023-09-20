@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * extract_precision - Calculates the precision for printing
- * @format: Formatted string in which to print the arguments
+ * extract_precision - This function calculates the precision
+ * @format: string in which to print the arguments
  * @i: List of arguments to be printed.
  * @args: list of arguments.
  *
