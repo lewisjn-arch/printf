@@ -108,7 +108,7 @@ int percentage_print(va_list args, char buffer[],
 int integer_print(va_list args, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	int i = BUFF_SIZE - 2;
+	int index = BUFF_SIZE - 2;
 	int negative = 0;
 	long int n = va_arg(args, long int);
 	unsigned long int num;
@@ -116,7 +116,7 @@ int integer_print(va_list args, char buffer[],
 	n = convert_number_size(n, size);
 
 	if (n == 0)
-		buffer[i--] = '0';
+		buffer[index--] = '0';
 
 	buffer[BUFF_SIZE - 1] = '\0';
 	num = (unsigned long int)n;
@@ -129,13 +129,13 @@ int integer_print(va_list args, char buffer[],
 
 	while (num > 0)
 	{
-		buffer[i--] = (num % 10) + '0';
+		buffer[index--] = (num % 10) + '0';
 		num /= 10;
 	}
 
-	i++;
+	index++;
 
-	return (number_write(negative, index, flags, width, precision, size));
+	return (number_write(negative, index, buffer, flags, width, precision, size));
 }
 
 /**

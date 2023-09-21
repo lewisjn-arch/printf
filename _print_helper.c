@@ -23,7 +23,7 @@ int handle_character_write(char s, char buffer[],
 	if (flags & FLAGS_ZERO)
 		padd = '0';
 
-	buffer[i++] = c;
+	buffer[i++] = s;
 	buffer[i] = '\0';
 
 	if (width > 1)

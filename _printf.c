@@ -1,11 +1,11 @@
 #include "main.h"
 
-void print_buffer(char buffer[], int *b_index);
+void buffer_print(char buffer[], int *b_index);
 
 /**
- * _printf - Printf function
+ * _printf - This function is a custom Printf function
  * @format: format.
- * Return: Printed chars.
+ * Return: Printed characters to standard output.
  */
 int _printf(const char *format, ...)
 {
@@ -52,14 +52,14 @@ int _printf(const char *format, ...)
 }
 
 /**
- * buffer_print - Prints the contents of the buffer if it exist
- * @buffer: Array of chars
- * @b_index: Index at which to add next char, represents the length.
+ * buffer_print - This function prints the contents of the buffer
+ * @buffer: Array of characters to be printed
+ * @b_index: Index at which to add next character, represents the length.
  */
 void buffer_print(char buffer[], int *b_index)
 {
 	if (*b_index > 0)
-		write(1, &buffer[0], *_index);
+		write(1, &buffer[0], *b_index);
 
 	*b_index = 0;
 }
