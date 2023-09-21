@@ -3,7 +3,7 @@
  * print_handler - This function prints an argument based on its type
  * @format: string in which to print the arguments.
  * @args: List of arguments to be printed.
- * @i: index.
+ * @index: index.
  * @buffer: Buffer array to handle print.
  * @flags: Calculates active flags
  * @width: gets width to be printed.
